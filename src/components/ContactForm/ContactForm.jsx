@@ -1,47 +1,35 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
-import css from "./ContactForm.module.css";
-import * as Yup from "yup";
+import { addContact } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
+import styles from "./ContactForm.module.css";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const phoneRegExp =
-    /^(\+?[1-9]{1,4}[-\s]?|[0-9]{2,4}[-\s]?)?[0-9]{3,4}[-\s]?[0-9]{3,4}$/;
-  const AddContactsSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    number: Yup.string()
-      .matches(phoneRegExp, "Phone number is not valid")
-      .required("Required"),
-  });
-
-  const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
-    actions.resetForm(); //
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      await dispatch(addContact(values)).unwrap();
+      resetForm();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
-    <Formik
-      initialValues={{ name: "", number: "" }}
-      onSubmit={handleSubmit}
-      validationSchema={AddContactsSchema}
-    >
-      <Form className={css.form}>
-        <label className={css.label}>
-          <span>Name</span>
-          <Field className={css.inputForm} type="text" name="name" />
-          <ErrorMessage name="name" component="div" className={css.error} />
+    <Formik initialValues={{ name: "", number: "" }} onSubmit={handleSubmit}>
+      <Form className={styles.contactForm}>
+        <label>
+          Name
+          <Field type="text" name="name" />
+          <ErrorMessage name="name" component="div" />
         </label>
-        <label className={css.label}>
-          <span>Number</span>
-          <Field className={css.inputForm} type="tel" name="number" />
-          <ErrorMessage name="number" component="div" className={css.error} />
+        <label>
+          Number
+          <Field type="tel" name="number" />
+          <ErrorMessage name="number" component="div" />
         </label>
-        <button className={css.ContactFormBtn} type="submit">
+        <button type="submit" style={{ marginTop: "15px" }}>
           Add Contact
         </button>
       </Form>

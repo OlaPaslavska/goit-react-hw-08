@@ -1,29 +1,25 @@
-.contactItem {
-  width: 200px;
-  height: 36px;
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 8px;
+.contact {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-}
-.contactItem:not(:last-child) {
-  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.contactBtnDel {
-  width: 64px;
-  height: 28px;
-  border: 2px solid grey;
-  border-radius: 4px;
-  background-color: aliceblue;
-  font-size: 14px;
+.contactText {
+  flex: 1;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: red;
   cursor: pointer;
 }
 
-.dataText {
-  font-family: "Arial";
-  font-size: 14px;
+button:hover {
+  color: darkred;
 }

@@ -1,0 +1,13 @@
+.btnWrapper {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.logOutBtn {
+  background-color: #fb4949;
+}
+.logOutBtn:hover,
+.logOutBtn:focus {
+  background-color: #e64343;
+}
