@@ -8,7 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import ContactsPage from "./pages/ContactsPage";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
+import RestrictedRoute from "./components/RestrictedRoute";
 import styles from "./App.module.css";
 
 const App = () => {
