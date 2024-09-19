@@ -27,6 +27,8 @@ export const store = configureStore({
           "auth/login/fulfilled",
           "auth/logOut/fulfilled",
           "auth/refreshUser/fulfilled",
+          "persist/PERSIST",
+          "persist/REHYDRATE",
         ],
         ignoredPaths: ["auth.token"],
       },
